@@ -1,10 +1,10 @@
 {
-  "name": "chrisandchris/barcode-bundle",
+  "name": "nikitospush/barcode-bundle",
   "type": "symfony-bundle",
-  "description": "Symfony 3 & 4 Barcode Generator Bundle with Twig function extension",
+  "description": "Symfony 4 & 5 Barcode Generator Bundle with Twig function extension",
   "keywords": [
-    "Symfony3",
     "Symfony4",
+    "Symfony5",
     "Flex",
     "barcode",
     "Symfony",
