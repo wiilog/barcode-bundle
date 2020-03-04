@@ -1270,6 +1270,7 @@ class QRcode {
             $p += 2;
         }
         $this->items = $this->appendNewInputItem($this->items, QR_MODE_KJ, $p, str_split($this->dataStr));
+
         return $run;
     }
 
