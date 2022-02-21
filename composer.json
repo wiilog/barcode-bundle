@@ -1,5 +1,5 @@
 {
-  "name": "nikitospush/barcode-bundle",
+  "name": "wiilog/barcode-bundle",
   "type": "symfony-bundle",
   "description": "Symfony 4 & 5 Barcode Generator Bundle with Twig function extension",
   "keywords": [
