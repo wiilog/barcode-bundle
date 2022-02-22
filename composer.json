@@ -1,7 +1,7 @@
 {
   "name": "wiilog/barcode-bundle",
   "type": "symfony-bundle",
-  "description": "Symfony 4 & 5 Barcode Generator Bundle with Twig function extension",
+  "description": "Symfony 6 Barcode Generator Bundle with Twig function extension",
   "keywords": [
     "Symfony4",
     "Symfony5",
@@ -16,10 +16,10 @@
   ],
   "license": "Apache-2.0",
   "require": {
-     "php": "^7.1 | ^8.0",
-     "symfony/framework-bundle": "^4.0|^5.0",
-     "symfony/twig-bundle": "^4.0|^5.0",
-     "symfony/options-resolver": "^4.0|^5.0"
+     "php": "^8.0",
+     "symfony/framework-bundle": "^6.0",
+     "symfony/twig-bundle": "^6.0",
+     "symfony/options-resolver": "^6.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^7"
