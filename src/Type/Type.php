@@ -4,9 +4,7 @@ namespace SGK\BarcodeBundle\Type;
 
 /**
  * Class BarcodeType
- * Supported standards of barcode
- *
- * @package SGK\BarcodeBundle\Type
+ * Supported standards of barcode.
  */
 class Type
 {
@@ -63,14 +61,14 @@ class Type
     public static function getDimension($type)
     {
         if (!self::hasType($type)) {
-            throw new \InvalidArgumentException("Type of Barcode is not supported.");
+            throw new \InvalidArgumentException('Type of Barcode is not supported.');
         }
 
         if (in_array($type, self::$twoDimensionalBarcodeType)) {
             return '2D';
-        } else {
-            return '1D';
         }
+
+        return '1D';
     }
 
     /**

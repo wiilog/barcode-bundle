@@ -6,9 +6,7 @@ use PHPUnit\Framework\TestCase;
 use SGK\BarcodeBundle\Generator\Generator;
 
 /**
- * Class GeneratorTest
- *
- * @package SGK\BarcodeBundle\Tests\Generator
+ * Class GeneratorTest.
  */
 class GeneratorTest extends TestCase
 {
@@ -17,39 +15,11 @@ class GeneratorTest extends TestCase
      */
     public function getOptions()
     {
-        return array(
-            array(
-                array(
-                    'code'   => '0123456789',
-                    'type'   => 'c128',
-                    'format' => 'html',
-                    'width'  => 2,
-                    'height' => 30,
-                    'color'  => 'black',
-                ),
-            ),
-            array(
-                array(
-                    'code'   => '0123456789',
-                    'type'   => 'c39',
-                    'format' => 'svg',
-                ),
-            ),
-            array(
-                array(
-                    'code'   => '0123456789',
-                    'type'   => 'qrcode',
-                    'format' => 'png',
-                    'width'  => 5,
-                    'height' => 5,
-                    'color'  => array(0 ,0, 0),
-                ),
-            ),
-        );
+        return [[['code' => '0123456789', 'type' => 'c128', 'format' => 'html', 'width' => 2, 'height' => 30, 'color' => 'black']], [['code' => '0123456789', 'type' => 'c39', 'format' => 'svg']], [['code' => '0123456789', 'type' => 'qrcode', 'format' => 'png', 'width' => 5, 'height' => 5, 'color' => [0, 0, 0]]]];
     }
 
     /**
-     * testGenerate
+     * testGenerate.
      *
      * @param array $options
      *
@@ -57,7 +27,7 @@ class GeneratorTest extends TestCase
      *
      * @dataProvider getOptions
      */
-    public function testGenerate($options = array())
+    public function testGenerate($options = [])
     {
         $generator = new Generator();
 
@@ -69,62 +39,22 @@ class GeneratorTest extends TestCase
      */
     public function getErrorOptions()
     {
-        return array(
-            array(
-                array(
-                    'code'   => '0123456789',
-                ),
-            ),
-            array(
-                array(
-                    'code'   => '0123456789',
-                    'type'   => 'Unknown Type',
-                    'format' => 'html',
-                ),
-            ),
-            array(
-                array(
-                    'code'   => '0123456789',
-                    'type'   => 'c128',
-                    'format' => 'Unknown Format',
-                ),
-            ),
-            array(
-                array(
-                    'code'   => '0123456789',
-                    'type'   => 'c39',
-                    'format' => 'svg',
-                    'width'  => 'width is int',
-                ),
-            ),
-            array(
-                array(
-                    'code'   => '0123456789',
-                    'type'   => 'qrcode',
-                    'format' => 'png',
-                    'width'  => 5,
-                    'height' => 5,
-                    'color'  => 5,
-                ),
-            ),
-        );
+        return [[['code' => '0123456789']], [['code' => '0123456789', 'type' => 'Unknown Type', 'format' => 'html']], [['code' => '0123456789', 'type' => 'c128', 'format' => 'Unknown Format']], [['code' => '0123456789', 'type' => 'c39', 'format' => 'svg', 'width' => 'width is int']], [['code' => '0123456789', 'type' => 'qrcode', 'format' => 'png', 'width' => 5, 'height' => 5, 'color' => 5]]];
     }
 
     /**
-     * testConfigureOptions
+     * testConfigureOptions.
      *
      * @param array $options
      *
      * @medium
      *
      * @dataProvider getErrorOptions
-     *
-     * @expectedException \Exception
      */
-    public function testConfigureOptions($options = array())
+    public function testConfigureOptions($options = [])
     {
+        $this->expectException(\Exception::class);
         $generator = new Generator();
-
         $generator->generate($options);
     }
 }
