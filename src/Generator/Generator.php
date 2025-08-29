@@ -10,9 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class Generator
- * Encapsulation of project https://github.com/dineshrabara/barcode for Symfony2 usage
- *
- * @package SGK\BarcodeBundle\Generator
+ * Encapsulation of project https://github.com/dineshrabara/barcode for Symfony2 usage.
  */
 class Generator
 {
@@ -41,7 +39,7 @@ class Generator
     ];
 
     /**
-     * construct
+     * construct.
      */
     public function __construct()
     {
@@ -52,9 +50,7 @@ class Generator
     }
 
     /**
-     * Configure generate options
-     *
-     * @param OptionsResolver $resolver
+     * Configure generate options.
      */
     protected function configureOptions(OptionsResolver $resolver)
     {
@@ -75,14 +71,14 @@ class Generator
             )
             ->setDefaults(
                 [
-                    'width' => function (Options $options) {
-                        return Type::getDimension($options['type']) == '2D' ? 5 : 2;
+                    'width' => function(Options $options) {
+                        return '2D' == Type::getDimension($options['type']) ? 5 : 2;
                     },
-                    'height' => function (Options $options) {
-                        return Type::getDimension($options['type']) == '2D' ? 5 : 30;
+                    'height' => function(Options $options) {
+                        return '2D' == Type::getDimension($options['type']) ? 5 : 30;
                     },
-                    'color' => function (Options $options) {
-                        return $options['format'] == 'png' ? [0, 0, 0] : 'black';
+                    'color' => function(Options $options) {
+                        return 'png' == $options['format'] ? [0, 0, 0] : 'black';
                     },
                 ]
             );
@@ -111,17 +107,16 @@ class Generator
         foreach ($allowedValues as $valueName => $value) {
             $resolver->setAllowedValues($valueName, $value);
         }
-
     }
 
     /**
      * @param array $options
-     *        string $code   code to print
-     *        string $type   type of barcode
-     *        string $format output format
-     *        int    $width  Minimum width of a single bar in user units.
-     *        int    $height Height of barcode in user units.
-     *        string $color  Foreground color (in SVG format) for bar elements (background is transparent).
+     *                       string $code   code to print
+     *                       string $type   type of barcode
+     *                       string $format output format
+     *                       int    $width  Minimum width of a single bar in user units.
+     *                       int    $height Height of barcode in user units.
+     *                       string $color  Foreground color (in SVG format) for bar elements (background is transparent).
      *
      * @return mixed
      */
@@ -129,7 +124,7 @@ class Generator
     {
         $options = $this->resolver->resolve($options);
 
-        if (Type::getDimension($options['type']) == '2D') {
+        if ('2D' == Type::getDimension($options['type'])) {
             return call_user_func_array(
                 [
                     $this->dns2d,
@@ -137,14 +132,14 @@ class Generator
                 ],
                 [$options['code'], $options['type'], $options['width'], $options['height'], $options['color']]
             );
-        } else {
-            return call_user_func_array(
-                [
-                    $this->dns1d,
-                    $this->formatFunctionMap[$options['format']],
-                ],
-                [$options['code'], $options['type'], $options['width'], $options['height'], $options['color']]
-            );
         }
+
+        return call_user_func_array(
+            [
+                $this->dns1d,
+                $this->formatFunctionMap[$options['format']],
+            ],
+            [$options['code'], $options['type'], $options['width'], $options['height'], $options['color']]
+        );
     }
 }

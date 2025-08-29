@@ -5,12 +5,9 @@ namespace SGK\BarcodeBundle\Twig\Extensions;
 use SGK\BarcodeBundle\Generator\Generator;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Twig_SimpleFunction;
 
 /**
- * Class Project_Twig_Extension
- *
- * @package SGK\BarcodeBundle\Twig\Extensions
+ * Class Project_Twig_Extension.
  */
 class Barcode extends AbstractExtension
 {
@@ -19,9 +16,6 @@ class Barcode extends AbstractExtension
      */
     protected $generator;
 
-    /**
-     * @param Generator $generator
-     */
     public function __construct(Generator $generator)
     {
         $this->generator = $generator;
@@ -35,7 +29,7 @@ class Barcode extends AbstractExtension
         return [
             new TwigFunction(
                 'barcode',
-                function ($options = []) {
+                function($options = []) {
                     echo $this->generator->generate($options);
                 }
             ),
